@@ -45,7 +45,7 @@ export default function Home() {
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
           </span>
-          Basado en ADempiere ERP en la Nube
+          Basado en ADempiere ERP · Cloud y On-Premise
         </motion.div>
 
         <motion.h1
@@ -89,7 +89,7 @@ export default function Home() {
           {[
             { value: '+500', label: 'Empresas gestionadas' },
             { value: '+15', label: 'Años de experiencia' },
-            { value: '100%', label: 'En la nube' },
+            { value: 'Cloud', label: 'y On-Premise' },
           ].map((stat) => (
             <div key={stat.label} className="flex flex-col items-center gap-1">
               <span className="text-3xl md:text-4xl font-extrabold text-gradient">{stat.value}</span>

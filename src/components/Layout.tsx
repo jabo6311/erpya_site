@@ -150,7 +150,7 @@ export default function Layout() {
           <div className="max-w-7xl mx-auto px-6 pt-8 flex items-center justify-between text-sm text-muted-foreground">
             <p>© 2026 ERPyA. Todos los derechos reservados.</p>
             <div className="flex gap-4">
-              <span className="select-none text-muted-foreground/60 hidden sm:inline">ADempiere ERP en la nube</span>
+              <span className="select-none text-muted-foreground/60 hidden sm:inline">ADempiere ERP · Cloud y On-Premise</span>
             </div>
           </div>
         </footer>
