@@ -1,21 +1,36 @@
 import { useState, useEffect } from 'react'
 import { Outlet, Link, useLocation } from 'react-router-dom'
-import { Sun, Moon } from 'lucide-react'
+import { Sun, Moon, Menu, X } from 'lucide-react'
+
+const navLinks = [
+  { to: '/funcionalidades', label: 'Funcionalidades' },
+  { to: '/soluciones', label: 'Soluciones' },
+  { to: '/nube', label: 'Nube' },
+  { to: '/nosotros', label: 'Nosotros' },
+]
 
 export default function Layout() {
   const [isDark, setIsDark] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
   const location = useLocation()
 
   useEffect(() => {
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      setIsDark(true)
-      document.documentElement.classList.add('dark')
-    }
+    const saved = localStorage.getItem('theme')
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const dark = saved ? saved === 'dark' : prefersDark
+    setIsDark(dark)
+    document.documentElement.classList.toggle('dark', dark)
   }, [])
 
+  useEffect(() => {
+    setMenuOpen(false)
+  }, [location.pathname])
+
   const toggleTheme = () => {
-    setIsDark(!isDark)
-    document.documentElement.classList.toggle('dark')
+    const next = !isDark
+    setIsDark(next)
+    document.documentElement.classList.toggle('dark', next)
+    localStorage.setItem('theme', next ? 'dark' : 'light')
   }
 
   return (
@@ -32,25 +47,48 @@ export default function Layout() {
             <Link to="/" className="flex items-center gap-2">
               <img src="https://erpya.com/wp-content/uploads/2017/11/ERP-logotipo-H-color.png" alt="ERPyA Logo" className="h-10 w-auto dark:drop-shadow-sm" />
             </Link>
-            
+
+            {/* Nav escritorio */}
             <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-muted-foreground">
-              <Link to="/funcionalidades" className={`hover:text-foreground transition-colors ${location.pathname==='/funcionalidades' ? 'text-primary font-bold' : ''}`}>Funcionalidades</Link>
-              <Link to="/soluciones" className={`hover:text-foreground transition-colors ${location.pathname==='/soluciones' ? 'text-primary font-bold' : ''}`}>Soluciones</Link>
-              <Link to="/nube" className={`hover:text-foreground transition-colors ${location.pathname==='/nube' ? 'text-primary font-bold' : ''}`}>Nube</Link>
-              <Link to="/nosotros" className={`hover:text-foreground transition-colors ${location.pathname==='/nosotros' ? 'text-primary font-bold' : ''}`}>Nosotros</Link>
+              {navLinks.map(link => (
+                <Link key={link.to} to={link.to} className={`hover:text-foreground transition-colors ${location.pathname === link.to ? 'text-primary font-bold' : ''}`}>
+                  {link.label}
+                </Link>
+              ))}
               <a href="#contacto" className="hover:text-foreground transition-colors">Contacto</a>
             </nav>
 
-            <div className="flex items-center gap-4">
-              <button 
-                onClick={toggleTheme} 
+            <div className="flex items-center gap-2">
+              <button
+                onClick={toggleTheme}
                 className="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 text-muted-foreground transition-colors"
                 aria-label="Toggle theme"
               >
                 {isDark ? <Sun size={20} /> : <Moon size={20} />}
               </button>
+
+              {/* Botón hamburguesa — solo móvil */}
+              <button
+                onClick={() => setMenuOpen(!menuOpen)}
+                className="md:hidden p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/10 text-muted-foreground transition-colors"
+                aria-label="Abrir menú"
+              >
+                {menuOpen ? <X size={22} /> : <Menu size={22} />}
+              </button>
             </div>
           </div>
+
+          {/* Menú móvil desplegable */}
+          {menuOpen && (
+            <div className="md:hidden mt-3 pb-4 border-t border-border pt-4 flex flex-col gap-4 text-sm font-medium text-muted-foreground">
+              {navLinks.map(link => (
+                <Link key={link.to} to={link.to} className={`px-2 hover:text-foreground transition-colors ${location.pathname === link.to ? 'text-primary font-bold' : ''}`}>
+                  {link.label}
+                </Link>
+              ))}
+              <a href="#contacto" onClick={() => setMenuOpen(false)} className="px-2 hover:text-foreground transition-colors">Contacto</a>
+            </div>
+          )}
         </header>
 
         <main className="flex-1 w-full relative z-0">
@@ -60,9 +98,6 @@ export default function Layout() {
         <footer id="contacto" className="py-16 bg-card border-t border-border mt-auto relative z-10">
           <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row border-b border-border pb-12 gap-12 justify-between">
             <div className="max-w-sm">
-              <div className="flex items-center gap-2 mb-4">
-                <img src="https://erpya.com/wp-content/uploads/2017/11/ERP-logotipo-H-color.png" alt="ERPyA Logo" className="h-12 w-auto dark:drop-shadow-sm" />
-              </div>
               <p className="text-muted-foreground mb-6">En la nube o en su empresa. Un ERP de clase mundial escalable para los negocios de hoy.</p>
               
               <div className="space-y-2 text-sm text-muted-foreground">
