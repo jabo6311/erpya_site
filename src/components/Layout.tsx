@@ -47,6 +47,7 @@ const SERVICIOS_MENU: MenuSection[] = [
   { section: 'Novedades', sectionEn: "What's New", items: [
     { to: '/ai-docs',   labelEs: 'IA · Carga de Documentos',  labelEn: 'AI · Document Capture',  descEs: 'Facturas y órdenes con IA',          descEn: 'Invoices & POs with AI',         Icon: FileText },
     { to: '/ai-quotes', labelEs: 'IA · Análisis de Cotizaciones', labelEn: 'AI · Quote Analysis', descEs: 'Compara cotizaciones con IA',    descEn: 'Compare quotes with AI',         Icon: MessageSquare },
+    { to: '/ai-bank',   labelEs: 'IA · Extractos Bancarios',  labelEn: 'AI · Bank Statements',   descEs: 'Conciliación con IA',               descEn: 'AI reconciliation',              Icon: Database },
     { to: '/seniat',    labelEs: 'Captura SENIAT',            labelEn: 'SENIAT Capture',          descEs: 'Datos de socios desde el portal',     descEn: 'Partner data from the portal',   Icon: Building2 },
     { to: '/bcv',       labelEs: 'Tasas BCV',                 labelEn: 'BCV Rates',               descEs: 'Tasas bancarias diarias automáticas', descEn: 'Daily automatic bank rates',     Icon: Banknote },
   ]},

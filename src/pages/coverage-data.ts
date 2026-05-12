@@ -167,6 +167,18 @@ export const COVERAGE_DATA: Record<string, CoverageData> = {
         itemsEn: ['PO integration', 'Bulk loading', 'Excel export'] },
     ],
   },
+  'ai-bank': {
+    titleEs: 'Cobertura del servicio', titleEn: 'Service Coverage',
+    subtitleEs: 'Todo lo que incluye la carga de extractos bancarios con IA.', subtitleEn: 'Everything in our AI bank statement loading.',
+    groups: [
+      { labelEs: 'Captura', labelEn: 'Capture',
+        itemsEs: ['PDF, Excel y CSV', 'Múltiples formatos bancarios', 'Reconocimiento de transacciones'],
+        itemsEn: ['PDF, Excel and CSV', 'Multiple bank formats', 'Transaction recognition'] },
+      { labelEs: 'Conciliación', labelEn: 'Reconciliation',
+        itemsEs: ['Asignación automática de cuentas', 'Conciliación en ERP', 'Reducción de errores'],
+        itemsEn: ['Automatic account assignment', 'ERP reconciliation', 'Error reduction'] },
+    ],
+  },
   seniat: {
     titleEs: 'Cobertura del servicio', titleEn: 'Service Coverage',
     subtitleEs: 'Todo lo que incluye la captura desde el portal del SENIAT.', subtitleEn: 'Everything in our SENIAT portal capture.',

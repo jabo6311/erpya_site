@@ -68,6 +68,12 @@ const SERVICIOS: Record<string, ServicioData> = {
     desc: { es: 'Compare cotizaciones de múltiples proveedores en segundos. La IA analiza precios, plazos y condiciones, y le sugiere la mejor opción según sus reglas de negocio.', en: 'Compare quotes from multiple vendors in seconds. AI analyzes prices, lead times and terms, and recommends the best option based on your business rules.' },
     features: { es: ['Carga de cotizaciones masiva', 'Comparación lado a lado', 'Análisis precio + plazo', 'Recomendación automática', 'Histórico por proveedor', 'Alertas de variación', 'Integración con OC', 'Reglas configurables'], en: ['Bulk quote loading', 'Side-by-side comparison', 'Price + lead-time analysis', 'Automatic recommendation', 'Vendor history', 'Variation alerts', 'PO integration', 'Configurable rules'] },
   },
+  'ai-bank': {
+    badgeKey: 'ai',
+    headline: { es: 'Carga de extractos bancarios usando IA.', en: 'AI-powered bank statement loading.' },
+    desc: { es: 'Nuestra inteligencia artificial procesa sus extractos bancarios en PDF o Excel, identificando transacciones y conciliando automáticamente en su ERP.', en: 'Our artificial intelligence processes your bank statements in PDF or Excel, identifying transactions and reconciling them automatically in your ERP.' },
+    features: { es: ['Procesamiento de PDF y Excel', 'Reconocimiento de transacciones', 'Conciliación bancaria automática', 'Reducción de errores manuales', 'Asignación de cuentas', 'Aprendizaje continuo'], en: ['PDF and Excel processing', 'Transaction recognition', 'Automatic bank reconciliation', 'Manual error reduction', 'Account assignment', 'Continuous learning'] },
+  },
   seniat: {
     badgeKey: 'local',
     headline: { es: 'Captura de socios de negocio desde el portal del SENIAT.', en: 'Business partner capture from the SENIAT portal.' },
@@ -95,7 +101,7 @@ const TITLE_LABELS: Record<string, string> = {
   odoo: 'Odoo', docker: 'Docker', kubernetes: 'Kubernetes',
   'power-bi': 'Power BI', 'apache-superset': 'Apache Superset',
   n8n: 'N8N', pentaho: 'Pentaho',
-  'ai-docs': 'IA · Documentos', 'ai-quotes': 'IA · Cotizaciones',
+  'ai-docs': 'IA · Documentos', 'ai-quotes': 'IA · Cotizaciones', 'ai-bank': 'IA · Extractos',
   seniat: 'SENIAT', bcv: 'BCV',
 }
 
