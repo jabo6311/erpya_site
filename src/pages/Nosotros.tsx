@@ -1,75 +1,51 @@
-import { motion } from 'framer-motion'
-import { Target, Lightbulb, PenTool } from 'lucide-react'
+import { Target, Lightbulb, Wrench } from 'lucide-react'
+import { useI18n } from '../lib/i18n'
+import { PageHero, Section } from '../components/PageHero'
 
 export default function Nosotros() {
+  const { t } = useI18n()
+  const cards = [
+    { Icon: Target,    titleKey: 'mission' as const,    textKey: 'missionText' as const },
+    { Icon: Lightbulb, titleKey: 'innovation' as const, textKey: 'innovationText' as const },
+    { Icon: Wrench,    titleKey: 'custom' as const,     textKey: 'customText' as const },
+  ]
   return (
-    <div className="pt-32 pb-24 px-6 min-h-screen">
-      <div className="max-w-4xl mx-auto flex flex-col items-center text-center space-y-4 mb-20">
-        <motion.h1 
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-4xl md:text-5xl font-extrabold tracking-tight text-foreground"
-        >
-          Acerca de ERPyA
-        </motion.h1>
-        <motion.p 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
-          className="text-muted-foreground text-lg"
-        >
-          Conozca más sobre nuestra visión y compromiso tecnológico.
-        </motion.p>
-      </div>
+    <div>
+      <PageHero badge={t('nosotros', 'badge')} title={t('nosotros', 'title')} subtitle={t('nosotros', 'sub')} />
 
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="glass-card p-10 flex flex-col items-center text-center gap-6 border-t border-t-black/10 dark:border-t-white/20"
-        >
-          <div className="bg-primary/10 text-primary p-4 rounded-full">
-            <Target size={32} />
-          </div>
-          <h3 className="text-2xl font-bold text-foreground">Nuestra Misión</h3>
-          <p className="text-muted-foreground leading-relaxed">
-            Nuestra misión es clara: realizar un esfuerzo continuo para innovar y crear soluciones tecnológicamente avanzadas que resuelvan los problemas de negocio de nuestros clientes de la manera más simple, ágil y eficiente.
-          </p>
-        </motion.div>
+      <Section>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5">
+          {cards.map(c => {
+            const { Icon } = c
+            return (
+              <div key={c.titleKey} className="bg-card border border-border rounded-xl p-5 flex flex-col gap-3">
+                <div className="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center">
+                  <Icon size={20} />
+                </div>
+                <div className="text-[15px] font-bold text-foreground">{t('nosotros', c.titleKey)}</div>
+                <div className="text-[13.5px] text-muted-foreground leading-relaxed">{t('nosotros', c.textKey)}</div>
+              </div>
+            )
+          })}
+        </div>
+      </Section>
 
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
-          className="glass-card p-10 flex flex-col items-center text-center gap-6 border-t border-t-black/10 dark:border-t-white/20"
-        >
-          <div className="bg-blue-500/10 text-blue-500 p-4 rounded-full">
-            <Lightbulb size={32} />
+      <Section alt>
+        <div className="flex items-center gap-10 flex-wrap">
+          <div className="flex-1 min-w-[220px]">
+            <h2 className="text-xl font-extrabold text-foreground mb-2.5 tracking-tight">{t('nosotros', 'about')}</h2>
+            <p className="text-sm text-muted-foreground leading-relaxed">{t('nosotros', 'aboutText')}</p>
           </div>
-          <h3 className="text-2xl font-bold text-foreground">Innovación Continua</h3>
-          <p className="text-muted-foreground leading-relaxed">
-            Creemos que al unir tecnología de punta con modernos y dinámicos procedimientos de negocios se alcanzan increíbles avances hacia la productividad empresarial.
-          </p>
-        </motion.div>
-
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.4 }}
-          className="glass-card p-10 flex flex-col items-center text-center gap-6 border-t border-t-black/10 dark:border-t-white/20"
-        >
-          <div className="bg-cyan-500/10 text-cyan-500 p-4 rounded-full">
-            <PenTool size={32} />
+          <div className="flex gap-7 flex-wrap">
+            {[['+500', t('nosotros','clients')], ['+15', t('nosotros','years')], ['2', t('nosotros','offices')]].map(([v,l]) => (
+              <div key={l} className="text-center">
+                <div className="text-3xl font-black text-primary tracking-tight">{v}</div>
+                <div className="text-xs text-muted-foreground mt-1">{l}</div>
+              </div>
+            ))}
           </div>
-          <h3 className="text-2xl font-bold text-foreground">A Medida (Custom)</h3>
-          <p className="text-muted-foreground leading-relaxed">
-            Nuestro potencial lo enfocamos en proveer las herramientas que su negocio requiere. En caso de que no exista un módulo, eso no es impedimento: podemos diseñarlo a medida fusionando nuestros conocimientos.
-          </p>
-        </motion.div>
-      </div>
+        </div>
+      </Section>
     </div>
   )
 }

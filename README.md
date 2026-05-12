@@ -1,73 +1,101 @@
-# React + TypeScript + Vite
+# ERPyA — Production Files
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este folder contiene los archivos `.tsx` listos para tu repo `erpya/erpya_site`.
 
-Currently, two official plugins are available:
+## Cómo aplicar
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Desde la raíz de tu repo local, en tu terminal:
 
-## React Compiler
+```bash
+# 1. Reemplaza estos archivos por los nuevos:
+cp /path/to/production/tailwind.config.js ./
+cp /path/to/production/src/index.css ./src/
+cp /path/to/production/src/App.tsx ./src/
+cp /path/to/production/src/components/Layout.tsx ./src/components/
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+# 2. Crea las nuevas carpetas y archivos:
+mkdir -p ./src/lib ./src/components ./src/pages
+cp /path/to/production/src/lib/*.ts*    ./src/lib/
+cp /path/to/production/src/components/*.tsx ./src/components/
+cp /path/to/production/src/pages/*.ts*  ./src/pages/
 
-## Expanding the ESLint configuration
+# 3. Borra los archivos viejos que ya no se usan
+rm -rf ./src/pages/generated
+rm ./src/pages/Funcionalidades.tsx ./src/pages/Soluciones.tsx ./src/pages/Home.tsx ./src/pages/Nosotros.tsx
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+# 4. Cualquier servicio que faltaba viene de los pages nuevos.
+# 5. Asegúrate de tener Inter:
+# en index.html agrega:
+#   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+# 6. Prueba en local
+npm run dev
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# 7. Si todo se ve bien, commit y push
+git add .
+git commit -m "feat: nuevo home con ecosistema, Servicios mega-menu, IA & SENIAT/BCV, dark mode, ES/EN, brand colors"
+git push
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Estructura nueva
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
 ```
+src/
+├── App.tsx                                  ← rutas actualizadas
+├── index.css                                ← theme tokens (light/dark)
+├── lib/
+│   ├── brand.ts                             ← navy + cyan del logo
+│   └── i18n.tsx                             ← Context + traducciones ES/EN
+├── components/
+│   ├── Layout.tsx                           ← Nav (mega-menu) + Footer
+│   ├── PageHero.tsx                         ← Hero + StatsBar + CtaBanner + Section
+│   ├── EcosystemDiagram.tsx                 ← Diagrama animado del home
+│   ├── CoverageTable.tsx                    ← Tabla colapsable
+│   └── NovedadesSection.tsx                 ← Sección "Lo nuevo en ERPyA"
+└── pages/
+    ├── Home.tsx                             ← Hero ecosistema + Novedades + Stats
+    ├── Adempiere.tsx                        ← ADempiere completo
+    ├── Servicio.tsx                         ← Template + data (Odoo, Docker, K8s, BI, IA, etc.)
+    ├── coverage-data.ts                     ← Tablas de cobertura por servicio
+    ├── Nube.tsx
+    └── Nosotros.tsx
+```
+
+## Rutas
+
+| Path               | Página              |
+|--------------------|---------------------|
+| `/`                | Home                |
+| `/adempiere`       | ADempiere completo  |
+| `/odoo`            | Odoo                |
+| `/docker`          | Docker              |
+| `/kubernetes`      | Kubernetes          |
+| `/nube`            | Nube / Cloud        |
+| `/power-bi`        | Power BI            |
+| `/apache-superset` | Apache Superset     |
+| `/n8n`             | N8N                 |
+| `/pentaho`         | Pentaho             |
+| `/ai-docs`         | IA · Documentos     |
+| `/ai-quotes`       | IA · Cotizaciones   |
+| `/seniat`          | Captura SENIAT      |
+| `/bcv`             | Tasas BCV           |
+| `/nosotros`        | Nosotros            |
+
+## Dependencias requeridas
+
+Ya están todas en tu `package.json`:
+
+- `react-router-dom` ✓
+- `framer-motion` ✓
+- `lucide-react` ✓
+- `tailwindcss` ✓
+
+No necesitas instalar nada nuevo.
+
+## Notas
+
+- **Tema dark/light**: persiste en `localStorage` con clave `theme`
+- **Idioma ES/EN**: persiste en `localStorage` con clave `erpya_lang`
+- **Mega-menu**: la columna "IA & Local" tiene badge "Nuevo" en cyan
+- **Cobertura**: la tabla está colapsada por defecto en cada página de servicio
+- **Logo del ecosistema**: usa `cropped-cropped-erp-icono-1-1.png` de erpya.com como fallback — si lo prefieres, descárgalo a `/public/logo-icon.png` y ajusta el `href` en `EcosystemDiagram.tsx`

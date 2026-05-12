@@ -1,103 +1,108 @@
-import { ArrowRight } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { Link } from 'react-router-dom'
+import { ArrowRight, CheckCircle2 } from 'lucide-react'
+import { useI18n } from '../lib/i18n'
+import EcosystemDiagram from '../components/EcosystemDiagram'
+import { StatsBar } from '../components/PageHero'
+import NovedadesSection from '../components/NovedadesSection'
 
 export default function Home() {
+  const { t, lang } = useI18n()
+  const navigate = useNavigate()
+  const proofPoints = lang === 'en'
+    ? ['ERP implementation', 'BI and analytics', 'Cloud infrastructure']
+    : ['Implementación ERP', 'BI y analítica', 'Infraestructura cloud']
+
   return (
-    <div className="flex flex-col items-center justify-center pt-32 pb-20 px-6 min-h-[90vh] relative overflow-hidden">
-
-      {/* Orbes animados de fondo */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <motion.div
-          animate={{ x: [0, 40, 0], y: [0, -30, 0], scale: [1, 1.12, 1] }}
-          transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute -top-40 -left-40 w-[550px] h-[550px] rounded-full bg-blue-500/25 dark:bg-blue-500/15 blur-[90px]"
-        />
-        <motion.div
-          animate={{ x: [0, -50, 0], y: [0, 40, 0], scale: [1, 1.18, 1] }}
-          transition={{ duration: 11, repeat: Infinity, ease: 'easeInOut', delay: 1.5 }}
-          className="absolute -top-20 -right-48 w-[650px] h-[650px] rounded-full bg-cyan-400/20 dark:bg-cyan-400/10 blur-[110px]"
-        />
-        <motion.div
-          animate={{ x: [0, 25, 0], y: [0, -40, 0], scale: [1, 1.1, 1] }}
-          transition={{ duration: 13, repeat: Infinity, ease: 'easeInOut', delay: 3 }}
-          className="absolute bottom-[-80px] left-1/2 -translate-x-1/2 w-[750px] h-[400px] rounded-full bg-blue-700/15 dark:bg-blue-600/10 blur-[120px]"
-        />
-      </div>
-
-      {/* Cuadrícula de puntos */}
+    <div>
       <div
-        className="absolute inset-0 pointer-events-none opacity-[0.04] dark:opacity-[0.07]"
+        id="home-hero"
+        data-header-surface="dark"
+        className="relative overflow-hidden px-6 pt-28 pb-16 sm:px-8 lg:pt-32 lg:pb-20"
         style={{
-          backgroundImage: 'radial-gradient(circle, currentColor 1px, transparent 1px)',
-          backgroundSize: '30px 30px',
+          background:
+            'radial-gradient(circle at 72% 34%, rgba(26,170,212,0.24), transparent 31%), radial-gradient(circle at 14% 12%, rgba(91,200,229,0.13), transparent 28%), linear-gradient(135deg, #071329 0%, #0D2167 47%, #08122A 100%)',
         }}
-      />
+      >
+        <div
+          className="pointer-events-none absolute inset-0 opacity-55"
+          style={{
+            backgroundImage:
+              'linear-gradient(rgba(255,255,255,0.055) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px)',
+            backgroundSize: '44px 44px',
+            maskImage: 'linear-gradient(to bottom, black 0%, transparent 92%)',
+          }}
+        />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-background/95 to-transparent" />
 
-      <div className="w-full max-w-5xl mx-auto flex flex-col items-center text-center pt-20 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border bg-card text-xs font-medium text-primary mb-8 shadow-sm"
-        >
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-          </span>
-          Basado en ADempiere ERP · Cloud y On-Premise
-        </motion.div>
-
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-5xl md:text-7xl font-extrabold tracking-tight text-foreground mb-6 leading-[1.1]"
-        >
-          Controle y visualice todo <br className="hidden md:block" />
-          <span className="text-gradient">en una sola plataforma.</span>
-        </motion.h1>
-
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl leading-relaxed"
-        >
-          Software de Gestión Integral para Empresas. ¿Por qué optar sólo por un software contable cuando un potente ERP y CRM está a su alcance para gestionar con éxito los negocios de hoy en día?
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="flex flex-col sm:flex-row items-center gap-4 w-full justify-center"
-        >
-          <Link to="/funcionalidades" className="w-full sm:w-auto px-8 py-4 bg-primary hover:bg-primary/90 text-primary-foreground rounded-full font-medium transition-colors flex items-center justify-center gap-2 group shadow-lg shadow-primary/25">
-            Ver Funcionalidades
-            <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-          </Link>
-        </motion.div>
-
-        {/* Métricas debajo del CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.5 }}
-          className="mt-16 flex flex-wrap justify-center gap-8 md:gap-16"
-        >
-          {[
-            { value: '+500', label: 'Empresas gestionadas' },
-            { value: '+15', label: 'Años de experiencia' },
-            { value: 'Cloud', label: 'y On-Premise' },
-          ].map((stat) => (
-            <div key={stat.label} className="flex flex-col items-center gap-1">
-              <span className="text-3xl md:text-4xl font-extrabold text-gradient">{stat.value}</span>
-              <span className="text-sm text-muted-foreground">{stat.label}</span>
-            </div>
-          ))}
-        </motion.div>
+        <div className="relative mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[minmax(0,1fr)_430px] lg:gap-14">
+          <div className="max-w-2xl">
+            <motion.div
+              initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
+              className="mb-6 inline-flex items-center gap-2 rounded-md border border-white/[0.18] bg-white/[0.09] px-3.5 py-1.5 text-xs font-semibold text-white/[0.88] shadow-[0_14px_38px_rgba(0,0,0,0.14)] backdrop-blur-md"
+            >
+              <span className="h-1.5 w-1.5 rounded-full bg-brand-cyan shadow-[0_0_14px_rgba(26,170,212,0.9)]" />
+              {t('home', 'badge')}
+            </motion.div>
+            <motion.h1
+              initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.08 }}
+              className="mb-5 max-w-[720px] text-[clamp(34px,5vw,64px)] font-extrabold leading-[1.04] tracking-tight text-white"
+            >
+              {t('home', 'headline1')}{' '}
+              <span className="text-brand-cyan-light">{t('home', 'headline2')}</span>
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.16 }}
+              className="mb-7 max-w-xl text-base leading-8 text-white/[0.72] sm:text-lg"
+            >
+              {t('home', 'subtitle')}
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.24 }}
+              className="mb-8 flex flex-wrap gap-3"
+            >
+              <button
+                onClick={() => navigate('/adempiere')}
+                className="inline-flex items-center gap-2 rounded-lg bg-brand-cyan px-6 py-3 text-sm font-extrabold text-brand-navy shadow-[0_18px_45px_rgba(26,170,212,0.28)] transition-colors hover:bg-brand-cyan-light"
+              >
+                {t('home', 'cta1')} <ArrowRight size={15} />
+              </button>
+              <button
+                onClick={() => navigate('/nosotros')}
+                className="rounded-lg border border-white/[0.24] px-5 py-3 text-sm font-semibold text-white/[0.88] transition-colors hover:bg-white/[0.08]"
+              >
+                {t('home', 'cta2')}
+              </button>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.32 }}
+              className="flex flex-wrap gap-x-5 gap-y-2 text-sm text-white/70"
+            >
+              {proofPoints.map(point => (
+                <span key={point} className="inline-flex items-center gap-2">
+                  <CheckCircle2 size={16} className="text-brand-cyan-light" />
+                  {point}
+                </span>
+              ))}
+            </motion.div>
+          </div>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.94 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.65, delay: 0.12 }}
+            className="mx-auto h-[320px] w-full max-w-[380px] sm:h-[380px] lg:h-[430px] lg:max-w-none"
+          >
+            <EcosystemDiagram />
+          </motion.div>
+        </div>
       </div>
+
+      <NovedadesSection />
+
+      <StatsBar stats={[
+        { value: '+500', label: t('home', 'statsCompanies') },
+        { value: '+15',  label: t('home', 'statsYears') },
+        { value: '8+',   label: t('home', 'statsServices') },
+        { value: '10+',  label: t('home', 'statsCloud') },
+      ]} />
     </div>
   )
 }
