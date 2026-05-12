@@ -1,4 +1,5 @@
-import { createContext, useContext, useEffect, useState, ReactNode } from 'react'
+import { createContext, useContext, useEffect, useState } from 'react'
+import type { ReactNode } from 'react'
 
 type Lang = 'es' | 'en'
 
@@ -82,7 +83,13 @@ const ES = {
   },
 } as const
 
-const EN: typeof ES = {
+type TranslationShape<T> = {
+  readonly [K in keyof T]: T[K] extends string ? string : TranslationShape<T[K]>
+}
+
+type Translations = TranslationShape<typeof ES>
+
+const EN: Translations = {
   nav: { services: 'Services', about: 'About us', contact: 'Contact' },
   home: {
     badge: 'Venezuela · Latin America',

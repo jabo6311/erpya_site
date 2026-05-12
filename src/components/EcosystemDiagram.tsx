@@ -1,4 +1,5 @@
-import { useEffect, useState, ReactNode } from 'react'
+import { useEffect, useState } from 'react'
+import type { ReactNode } from 'react'
 import { BRAND } from '../lib/brand'
 import erpyaMarkUrl from '../assets/erpya-mark.svg'
 
