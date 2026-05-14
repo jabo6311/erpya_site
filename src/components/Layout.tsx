@@ -8,6 +8,7 @@ import {
   MapPin, Mail, Phone,
 } from 'lucide-react'
 import { useI18n } from '../lib/i18n'
+import WhatsAppButton from './WhatsAppButton'
 
 type MenuItem = {
   to: string
@@ -252,6 +253,7 @@ export default function Layout() {
       </main>
 
       <Footer />
+      <WhatsAppButton />
     </div>
   )
 }
@@ -264,7 +266,7 @@ function Footer() {
   ]
   const phones = [
     { label: '+58 (255) 665 94 70', href: 'tel:+582556659470' },
-    { label: '+58 412-2223824', href: 'tel:+584122223824' },
+    { label: '+58 412-2223824', href: 'https://wa.me/584122223824' },
     { label: '+58 412-1741773', href: 'tel:+584121741773' },
   ]
 
