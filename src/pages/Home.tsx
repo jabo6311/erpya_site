@@ -98,7 +98,7 @@ export default function Home() {
       <NovedadesSection />
 
       <StatsBar stats={[
-        { value: '+500', label: t('home', 'statsCompanies') },
+        { value: '+100', label: t('home', 'statsCompanies') },
         { value: '+15',  label: t('home', 'statsYears') },
         { value: '8+',   label: t('home', 'statsServices') },
         { value: '10+',  label: t('home', 'statsCloud') },

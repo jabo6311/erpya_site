@@ -37,7 +37,7 @@ export default function Nosotros() {
             <p className="text-sm text-muted-foreground leading-relaxed">{t('nosotros', 'aboutText')}</p>
           </div>
           <div className="flex gap-7 flex-wrap">
-            {[['+500', t('nosotros','clients')], ['+15', t('nosotros','years')], ['2', t('nosotros','offices')]].map(([v,l]) => (
+            {[['+100', t('nosotros','clients')], ['+15', t('nosotros','years')], ['2', t('nosotros','offices')]].map(([v,l]) => (
               <div key={l} className="text-center">
                 <div className="text-3xl font-black text-primary tracking-tight">{v}</div>
                 <div className="text-xs text-muted-foreground mt-1">{l}</div>
