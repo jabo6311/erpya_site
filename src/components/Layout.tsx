@@ -9,6 +9,7 @@ import {
 } from 'lucide-react'
 import { useI18n } from '../lib/i18n'
 import WhatsAppButton from './WhatsAppButton'
+import erpyaLogoUrl from '../assets/ERP-logotipo-H-color.png'
 
 type MenuItem = {
   to: string
@@ -168,9 +169,7 @@ export default function Layout() {
         <div className="w-full max-w-7xl mx-auto flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2.5">
             <img
-              src={transparent
-                ? "https://erpya.com/wp-content/uploads/2017/11/ERP-logotipo-H-color.png"
-                : "https://erpya.com/wp-content/uploads/2017/11/ERP-logotipo-H-color.png"}
+              src={erpyaLogoUrl}
               alt="ERPyA"
               className="h-9 w-auto"
             />
