@@ -41,7 +41,7 @@ export default function Adempiere() {
         cta2={t('adempiere', 'cta2')}
       />
       <StatsBar stats={[
-        { value: '+500', label: lang === 'en' ? 'Companies implemented' : 'Empresas implementadas' },
+        { value: '+100', label: lang === 'en' ? 'Companies implemented' : 'Empresas implementadas' },
         { value: '+15',  label: lang === 'en' ? 'Years of experience' : 'Años de experiencia' },
         { value: '10+',  label: lang === 'en' ? 'Integrated modules' : 'Módulos integrados' },
         { value: '10+',  label: lang === 'en' ? 'Countries served' : 'Países atendidos' },
