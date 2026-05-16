@@ -15,6 +15,9 @@ type PageHeroProps = {
 }
 
 export function PageHero({ badge, title, titleAccent, subtitle, cta1, cta2, onCta1, onCta2, children }: PageHeroProps) {
+  const handleCta1 = onCta1 || (() => window.open('https://wa.me/584122223824', '_blank'))
+  const handleCta2 = onCta2 || (() => window.open('https://wa.me/584122223824', '_blank'))
+
   return (
     <div
       data-header-surface="dark"
@@ -67,7 +70,7 @@ export function PageHero({ badge, title, titleAccent, subtitle, cta1, cta2, onCt
           >
             {cta1 && (
               <button
-                onClick={onCta1}
+                onClick={handleCta1}
                 className="inline-flex items-center gap-1.5 px-6 py-3 rounded-lg bg-brand-cyan text-brand-navy font-bold text-sm hover:bg-brand-cyan-light transition-colors"
               >
                 {cta1} <ArrowRight size={15} />
@@ -75,7 +78,7 @@ export function PageHero({ badge, title, titleAccent, subtitle, cta1, cta2, onCt
             )}
             {cta2 && (
               <button
-                onClick={onCta2}
+                onClick={handleCta2}
                 className="px-5 py-3 rounded-lg border border-white/[0.22] text-white/[0.88] font-medium text-sm hover:bg-white/[0.08] transition-colors"
               >
                 {cta2}
@@ -108,6 +111,7 @@ export function StatsBar({ stats }: { stats: { value: string; label: string }[] 
 }
 
 export function CtaBanner({ title, sub, btnLabel, onClick }: { title: string; sub?: string; btnLabel: string; onClick?: () => void }) {
+  const handleClick = onClick || (() => window.open('https://wa.me/584122223824', '_blank'))
   return (
     <div className="max-w-4xl mx-auto px-8 py-12">
       <div className="bg-brand-navy rounded-xl px-10 py-8 flex items-center justify-between flex-wrap gap-5">
@@ -116,7 +120,7 @@ export function CtaBanner({ title, sub, btnLabel, onClick }: { title: string; su
           {sub && <div className="text-sm text-white/70">{sub}</div>}
         </div>
         <button
-          onClick={onClick}
+          onClick={handleClick}
           className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-lg bg-brand-cyan text-brand-navy font-bold text-sm hover:bg-brand-cyan-light transition-colors whitespace-nowrap"
         >
           {btnLabel} <ArrowRight size={15} />
